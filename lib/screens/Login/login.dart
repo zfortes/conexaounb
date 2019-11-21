@@ -1,5 +1,8 @@
 //import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:conexaounb/configs/configs.dart';
+import 'package:conexaounb/modals/usuario.dart';
 import 'package:conexaounb/screens/Cadastro/cadastro.dart';
+import 'package:conexaounb/screens/relato/addImage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 //import 'package:tinder_dev/bloc/userBloc.dart';
@@ -110,10 +113,10 @@ class _LoginState extends State<Login> {
                   style: TextStyle(fontSize: 20, color: Colors.white)
                 ),
                 onPressed: () {
-                  // if (_emailKey.currentState.validate() && _senhaKey.currentState.validate()) {
-                  //   getUser(emailController.text);
-                  //   //Navigator.pop(context);
-                  // }
+                   if (_emailKey.currentState.validate() && _senhaKey.currentState.validate()) {
+                      login();
+                     //Navigator.pop(context);
+                   }
                 },
               )
             ),
@@ -129,12 +132,12 @@ class _LoginState extends State<Login> {
                   style: TextStyle(fontSize: 20, color: Colors.white)
                 ),
                 onPressed: () {
-                  if (_emailKey.currentState.validate() && _senhaKey.currentState.validate()) {
-                    //getUser(emailController.text);
+//                  if (_emailKey.currentState.validate() && _senhaKey.currentState.validate()) {
+//                    //getUser(emailController.text);
                     Navigator.push(context, MaterialPageRoute(builder: (context) => 
                     Cadastro() ));      
                     //Navigator.pop(context);
-                  }
+//                  }
                 },
               )
             ),
@@ -152,7 +155,23 @@ class _LoginState extends State<Login> {
   }
 
 
+  void login() async{
+    final response = await http.post(Configs.ipServer + "/login",
+       headers: {'Content-type': 'application/json'},
+        body: json.encoder.convert(
+            {
+              "email": emailController.text,
+              "senha": senhaController.text
+            }));
 
+    if (response.statusCode == 200) {
+      var j = json.decode(response.body);
+      Usuario usuario = Usuario.fromJson(j);
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>
+          AddImage(usuario: usuario)));
+    }
+
+  }
 
 //  void getUser(String emailName) async {
 //     //final response = await http.post("http://10.0.2.2:3333/devs",

@@ -1,4 +1,5 @@
 //import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:conexaounb/configs/configs.dart';
 import 'package:conexaounb/screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -84,31 +85,31 @@ class _CadastroState extends State<Cadastro> {
             SizedBox(height: 20,),
             
             Container( //Email
-            width: 308.0,
-            height: 60.0,
-            child: Card(
-              elevation: 3,
-              child: Form(
-                key: _emailKey,
-                child: TextFormField(
-                  autofocus: false,
-                  controller: emailController,
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Informe um email';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    hintText: 'e-mail',
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets
-                      .symmetric(vertical: 15.0, horizontal: 15),
+              width: 308.0,
+              height: 60.0,
+              child: Card(
+                elevation: 3,
+                child: Form(
+                  key: _emailKey,
+                  child: TextFormField(
+                    autofocus: false,
+                    controller: emailController,
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Informe um email';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'e-mail',
+                      border: InputBorder.none,
+                      contentPadding: const EdgeInsets
+                        .symmetric(vertical: 15.0, horizontal: 15),
+                    ),
+                    style: TextStyle(fontSize: 16),
                   ),
-                  style: TextStyle(fontSize: 16),
                 ),
-              ),
             ),
           ),
           SizedBox(height: 20,),
@@ -220,8 +221,8 @@ class _CadastroState extends State<Cadastro> {
                 ),
                 onPressed: () {
                   if (_emailKey.currentState.validate() && _senhaKey.currentState.validate()) {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => 
-                     Login() ));
+                      cadastrarUsuario();
+
                     //getUser(emailController.text);
                     //Navigator.pop(context);
                   }
@@ -252,4 +253,23 @@ class _CadastroState extends State<Cadastro> {
   //   //bloc.setUser(user);
   //   //print("J = " +  j);
   //}
+
+
+  Future cadastrarUsuario() async {
+    final response = await http.post(Configs.ipServer + "/user",
+             headers: {'Content-type': 'application/json'},
+              body: json.encoder.convert(
+                  {
+                      "nome": nomeController.text,
+                      "email" : emailController.text,
+                      "senha" :senhaController.text,
+                      "cargo" : 1
+                  }
+                  ));
+
+           if (response.statusCode == 200) {
+             Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                 Login()));
+           }
+  }
 }
