@@ -107,7 +107,7 @@ class _LoginState extends State<Login> {
               height: 50,
               child: RaisedButton(
                 elevation: 3,
-                color: Colors.blue,  //TODO SABER QUAL A COR PRA ALTERAR DEPOIS
+                color: Configs.colorButton,  //TODO SABER QUAL A COR PRA ALTERAR DEPOIS
                 child: Text(
                   'Entrar',
                   style: TextStyle(fontSize: 20, color: Colors.white)
@@ -126,7 +126,7 @@ class _LoginState extends State<Login> {
               height: 50,
               child: RaisedButton(
                 elevation: 3,
-                color: Colors.blue,  //TODO SABER QUAL A COR PRA ALTERAR DEPOIS
+                color: Configs.colorButton,  //TODO SABER QUAL A COR PRA ALTERAR DEPOIS
                 child: Text(
                   'Cadastre-se',
                   style: TextStyle(fontSize: 20, color: Colors.white)

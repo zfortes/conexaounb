@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:conexaounb/configs/configs.dart';
 import 'package:conexaounb/screens/relato/relato.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class _AddImageState extends State<AddImage> {
                           height: 50,
                           child: RaisedButton(
                             elevation: 3,
-                            color: Colors.orange,
+                            color: Configs.colorButton,
                             child: Text(
                                 'Adicionar imagem',
                                 style: TextStyle(fontSize: 20, color: Colors.white)
@@ -69,7 +70,7 @@ class _AddImageState extends State<AddImage> {
                           height: 50,
                           child: RaisedButton(
                             elevation: 3,
-                            color: Colors.orange,
+                            color: Configs.colorButton,
                             child: Text(
                                 'Proximo',
                                 style: TextStyle(fontSize: 20, color: Colors.white)

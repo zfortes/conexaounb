@@ -137,7 +137,7 @@ class _RelatoState extends State<Relato> {
                     height: 50,
                     child: RaisedButton(
                       elevation: 3,
-                      color: Colors.orange,
+                      color: Configs.colorButton,
                       child: Text(
                           'Enviar',
                           style: TextStyle(fontSize: 20, color: Colors.white)

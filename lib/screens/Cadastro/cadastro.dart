@@ -210,7 +210,7 @@ class _CadastroState extends State<Cadastro> {
               height: 50,
               child: RaisedButton(
                 elevation: 3,
-                color: Colors.blue,  //TODO SABER QUAL A COR PRA ALTERAR DEPOIS
+                color: Configs.colorButton,  //TODO SABER QUAL A COR PRA ALTERAR DEPOIS
                 child: Text(
                   'Enviar',
                   style: TextStyle(fontSize: 18, 
