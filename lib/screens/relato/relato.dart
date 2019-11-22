@@ -179,22 +179,22 @@ class _RelatoState extends State<Relato> {
   }
 
   Future enviarRelato() async {
-    String imagem = base64Encode(image.readAsBytesSync());
-    final response = await http.post(Configs.ipServer + "/relato",
-        headers: {'Content-type': 'application/json'},
-        body: json.encoder.convert(
-            {
-                "titulo": _tituloController.text,
-                "descricao" : _descricaoController.text,
-                "nome" : servicoSelecionado,
-                "local": "UnB",
-                "feedback" : 1,
-                "email" : widget.usuario.getEmail(),
-                "imagem" : imagem
-            }));
-        if (response.statusCode == 200){
+    // String imagem = base64Encode(image.readAsBytesSync());
+    // final response = await http.post(Configs.ipServer + "/relato",
+    //     headers: {'Content-type': 'application/json'},
+    //     body: json.encoder.convert(
+    //         {
+    //             "titulo": _tituloController.text,
+    //             "descricao" : _descricaoController.text,
+    //             "nome" : servicoSelecionado,
+    //             "local": "UnB",
+    //             "feedback" : 1,
+    //             "email" : widget.usuario.getEmail(),
+    //             "imagem" : imagem
+    //         }));
+        // if (response.statusCode == 200){
           Navigator.pop(context);
-        }
+        // }
   }
 
   Future<void> getServicos() async {

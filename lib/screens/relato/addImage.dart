@@ -80,8 +80,8 @@ class _AddImageState extends State<AddImage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) =>
-                                      Relato(image: _image, usuario: widget.usuario)),
-                                );
+                                      Relato(image: _image, usuario: widget.usuario)), 
+                                );         
                               }
                             },
                           )
